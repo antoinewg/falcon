@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query'
 
-import { QueryKeys, PLANET_URL } from '../../constants'
+import { QueryKeys, FALCON_URL, PLANET_URL } from '../../constants'
 
-import { Route } from './types'
+import { Falcon, Route } from './types'
 
 const query = () => fetch(`${PLANET_URL}/1`).then((res) => res.json())
 
@@ -19,3 +19,7 @@ export const usePlanets = () => {
 
   return Array.from(planets)
 }
+
+const falconQuery = () => fetch(`${FALCON_URL}/1`).then((res) => res.json())
+
+export const useFalcon = () => useQuery<Falcon>(QueryKeys.FALCON, falconQuery)

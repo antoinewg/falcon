@@ -1,8 +1,6 @@
-import { Route, Link, Network } from './types'
+import { Route, Link, Network, Colors } from './types'
 
-const DEFAULT_COLOR = 'lightskyblue'
-
-export const getNetworkData = (routes: Route[]): Network => {
+export const getNetworkData = (routes: Route[], start?: string, finish?: string): Network => {
   const planets = new Set<string>()
   const links: Link[] = []
 
@@ -13,7 +11,13 @@ export const getNetworkData = (routes: Route[]): Network => {
   })
 
   return {
-    nodes: Array.from(planets).map((id) => ({ id, color: DEFAULT_COLOR })),
+    nodes: Array.from(planets).map((id) => ({ id, color: mapColor(id, start, finish) })),
     links,
   }
+}
+
+const mapColor = (id: string, start?: string, finish?: string): Colors => {
+  if (id === start) return Colors.START
+  if (id === finish) return Colors.FINISH
+  return Colors.DEFAULT
 }

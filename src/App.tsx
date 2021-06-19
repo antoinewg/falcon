@@ -1,12 +1,7 @@
+import { Graph } from './components/Graph'
+
 export const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
-      <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        Learn React
-      </a>
-    </header>
+  <div style={{ height: '100vh' }}>
+    <Graph />
   </div>
 )

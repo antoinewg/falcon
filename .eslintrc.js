@@ -26,6 +26,7 @@ module.exports = {
     'plugin:import/errors',
   ],
   rules: {
+    'react/prop-types': 'off',
     'react/jsx-uses-react': 'off', // react 17
     'react/react-in-jsx-scope': 'off', // react 17
     '@typescript-eslint/explicit-module-boundary-types': 'off',

@@ -1,10 +1,13 @@
-import Button from '@material-ui/core/Button'
 import CardActions from '@material-ui/core/CardActions'
 import FormControl from '@material-ui/core/FormControl'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import React, { useState } from 'react'
+
+import { Apply } from './Apply'
+import { Upload } from './Upload'
+import { getErrorMessage } from './utils'
 
 const data = {
   countdown: 6,
@@ -14,27 +17,9 @@ const data = {
   ],
 }
 
-// Constant for now
-const PLANETS = ['Tatooine', 'Dagobah', 'Hoth', 'Endor']
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getErrorMessage = (rebels: any): string | undefined => {
-  let errorMessage
-
-  if (typeof rebels !== 'object' || !rebels) return 'The object is malformed'
-  if (!('countdown' in rebels)) return "The object should have the key 'countdown'"
-  if (!('bounty_hunters' in rebels)) return "The object should have the key 'bounty_hunters'"
-
-  const hunters = 'bounty_hunters' in rebels ? rebels.bounty_hunters : []
-  if (!Array.isArray(hunters)) return "'bounty_hunters' should be an array"
-  if (hunters.some(({ planet }) => !PLANETS.includes(planet))) return 'Some planets are incorrect'
-
-  return errorMessage
-}
-
 export const RebelsPosition = () => {
   const classes = useStyles()
-  const [rebels, setRebels] = useState(data)
+  const [rebels, setRebels] = useState<Record<string, unknown>>(data)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setRebels(JSON.parse(event.target.value))
@@ -55,20 +40,12 @@ export const RebelsPosition = () => {
         />
         {error ? <FormHelperText>{error}</FormHelperText> : null}
       </FormControl>
-      <CardActions>
-        <div className={classes.apply}>
-          <Button color="primary" disabled={!!error}>
-            Apply
-          </Button>
-        </div>
+      <CardActions disableSpacing>
+        <Upload onUpload={setRebels} />
+        <Apply disabled={!!error} />
       </CardActions>
     </React.Fragment>
   )
 }
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    formControl: { width: '100%' },
-    apply: { marginLeft: 'auto' },
-  }),
-)
+const useStyles = makeStyles(() => createStyles({ formControl: { width: '100%' } }))

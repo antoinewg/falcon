@@ -18,7 +18,7 @@ const data = {
   ],
 }
 
-export const Graph = () => (
+export const PlanetarySystem = () => (
   <GraphNetwork
     data={data}
     id="graph"

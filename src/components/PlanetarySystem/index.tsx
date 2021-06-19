@@ -1,11 +1,11 @@
 import GraphNetwork from 'react-graph-network'
 
-import { usePlanets } from './api'
+import { useRoutes } from './api'
 import { NodeComponent } from './Node'
 import { getNetworkData } from './utils'
 
 export const PlanetarySystem = () => {
-  const { data } = usePlanets()
+  const { data } = useRoutes()
 
   return data ? (
     <GraphNetwork

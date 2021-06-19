@@ -4,27 +4,31 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import React, { useState } from 'react'
+import { useEffect, useMemo } from 'react'
 
+import { usePlanets } from '../PlanetarySystem/api'
+
+import { useRebelsPosition } from './api'
 import { Apply } from './Apply'
 import { Upload } from './Upload'
-import { getErrorMessage } from './utils'
-
-const data = {
-  countdown: 6,
-  bounty_hunters: [
-    { planet: 'Tatooine', day: 4 },
-    { planet: 'Dagobah', day: 5 },
-  ],
-}
+import { getErrorMessage, IRebelsPosition } from './utils'
 
 export const RebelsPosition = () => {
   const classes = useStyles()
-  const [rebels, setRebels] = useState<Record<string, unknown>>(data)
+  const { data } = useRebelsPosition()
+  const planets = usePlanets()
+  const [rebels, setRebels] = useState<IRebelsPosition | undefined>(undefined)
+
+  useEffect(() => {
+    if (data) {
+      setRebels(data)
+    }
+  }, [data])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setRebels(JSON.parse(event.target.value))
 
-  const error = getErrorMessage(rebels)
+  const error = useMemo(() => getErrorMessage(rebels, planets), [rebels, planets])
 
   return (
     <React.Fragment>

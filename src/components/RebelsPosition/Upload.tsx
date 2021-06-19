@@ -3,8 +3,10 @@ import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import React, { useState } from 'react'
 
+import { IRebelsPosition } from './utils'
+
 interface Props {
-  onUpload: (content: Record<string, unknown>) => void
+  onUpload: (content: IRebelsPosition) => void
 }
 
 export const Upload: React.FC<Props> = ({ onUpload }) => {

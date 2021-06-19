@@ -1,8 +1,15 @@
-// Constant for now
-const PLANETS = ['Tatooine', 'Dagobah', 'Hoth', 'Endor']
+interface BountyHunter {
+  planet: string
+  day: number
+}
+
+export interface IRebelsPosition {
+  countdown: number
+  bounty_hunters: BountyHunter[]
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getErrorMessage = (rebels: any): string | undefined => {
+export const getErrorMessage = (rebels: any, planets: string[]): string | undefined => {
   let errorMessage
 
   if (typeof rebels !== 'object' || !rebels) return 'The object is malformed'
@@ -11,7 +18,7 @@ export const getErrorMessage = (rebels: any): string | undefined => {
 
   const hunters = 'bounty_hunters' in rebels ? rebels.bounty_hunters : []
   if (!Array.isArray(hunters)) return "'bounty_hunters' should be an array"
-  if (hunters.some(({ planet }) => !PLANETS.includes(planet))) return 'Some planets are incorrect'
+  if (hunters.some(({ planet }) => !planets.includes(planet))) return 'Some planets are incorrect'
 
   return errorMessage
 }

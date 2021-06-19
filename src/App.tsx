@@ -5,16 +5,18 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { Graph } from './components/Graph'
 import { RebelsPosition } from './components/RebelsPosition'
+
+const queryClient = new QueryClient()
 
 export const App = () => {
   const classes = useStyles()
 
   return (
-    <React.Fragment>
+    <QueryClientProvider client={queryClient}>
       <CssBaseline />
       <main>
         <Container className={classes.cardGrid} maxWidth="xl">
@@ -57,7 +59,7 @@ export const App = () => {
           </Grid>
         </Container>
       </main>
-    </React.Fragment>
+    </QueryClientProvider>
   )
 }
 

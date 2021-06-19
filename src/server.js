@@ -12,7 +12,9 @@ const EXAMPLES = '1234'.split('')
 const error = `Invalid example, please choose one of ${EXAMPLES}`
 
 server.get('/routes/:id', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
   if (!EXAMPLES.includes(req.params.id)) return res.status(400).json({ error })
+
   const database = `${PATH + req.params.id}/universe.db`
   const db = new sqlite3.Database(database, sqlite3.OPEN_READWRITE)
   db.all('select * from ROUTES', [], (_, routes) => res.json({ routes }))
@@ -20,19 +22,25 @@ server.get('/routes/:id', (req, res) => {
 })
 
 server.get('/empire/:id', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
   if (!EXAMPLES.includes(req.params.id)) return res.status(400).json({ error })
+
   const file = `${PATH + req.params.id}/empire.json`
   fs.readFile(file, (_, json) => res.json(JSON.parse(json)))
 })
 
 server.get('/millenium-falcon/:id', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
   if (!EXAMPLES.includes(req.params.id)) return res.status(400).json({ error })
+
   const file = `${PATH + req.params.id}/millenium-falcon.json`
   fs.readFile(file, (_, json) => res.json(JSON.parse(json)))
 })
 
 server.get('/answer/:id', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
   if (!EXAMPLES.includes(req.params.id)) return res.status(400).json({ error })
+
   const file = `${PATH + req.params.id}/answer.json`
   fs.readFile(file, (_, json) => res.json(JSON.parse(json)))
 })

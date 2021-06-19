@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 
 import { QueryKeys, PLANET_URL } from '../../constants'
 
-import { Route } from './utils'
+import { Route } from './types'
 
 const query = () => fetch(`${PLANET_URL}/1`).then((res) => res.json())
 

@@ -10,8 +10,9 @@ import { usePlanets } from '../PlanetarySystem/api'
 
 import { useRebelsPosition } from './api'
 import { Apply } from './Apply'
+import { IRebelsPosition } from './types'
 import { Upload } from './Upload'
-import { getErrorMessage, IRebelsPosition } from './utils'
+import { getErrorMessage } from './utils'
 
 export const RebelsPosition = () => {
   const classes = useStyles()

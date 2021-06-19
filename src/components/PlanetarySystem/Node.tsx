@@ -1,7 +1,4 @@
-interface Node {
-  id: string
-  color: string
-}
+import { Node } from './types'
 
 export const NodeComponent = ({ node }: { node: Node }) => (
   <g>

@@ -1,24 +1,4 @@
-export interface Route {
-  origin: string
-  destination: string
-  travel_time: number
-}
-
-interface Node {
-  id: string
-  color: string
-}
-
-interface Link {
-  source: string
-  target: string
-  distance: number
-}
-
-interface Network {
-  nodes: Node[]
-  links: Link[]
-}
+import { Route, Link, Network } from './types'
 
 const DEFAULT_COLOR = 'lightskyblue'
 

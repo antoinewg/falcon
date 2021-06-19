@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 
 import { QueryKeys, REBELS_URL } from '../../constants'
 
-import { IRebelsPosition } from './utils'
+import { IRebelsPosition } from './types'
 
 const query = () => fetch(`${REBELS_URL}/1`).then((res) => res.json())
 

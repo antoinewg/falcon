@@ -1,10 +1,10 @@
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
 
 import { PlanetarySystem } from '../PlanetarySystem'
 import { RebelsPosition } from '../RebelsPosition'
+import { SurvivalChances } from '../SurvivalChances'
 
 import { DashboardCard } from './DashboardCard'
 
@@ -24,7 +24,7 @@ export const Dashboard = () => {
           </DashboardCard>
 
           <DashboardCard title="Survival chances">
-            <Typography variant="h2">91%</Typography>
+            <SurvivalChances />
           </DashboardCard>
         </Grid>
       </Container>

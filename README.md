@@ -70,3 +70,19 @@ Simply run:
 $ ./give-me-the-odds.sh src/examples/example2/millenium-falcon.json src/examples/example2/empire.json
 0.81
 ```
+
+### Discussion
+
+We can't see that from the commit history, but I've spent a lot of time on the planetary system and even more on the editable json fields.
+
+For the planetary system, at some point, I was about to create my own npm package to display the planetary system. I had a particular UX in mind where you could move the planets around, see the distance on the edges and have an animation once the odds are computed to show the itinerary of the Millenium Falcon. After trying almost 10 libraries, including the very nice [react-force-graph](https://github.com/vasturiano/react-force-graph), I settled with the simpler [react-graph-network](https://github.com/AlyonaShadrina/react-graph-network).
+
+I've also spent a considerable amount of time searching for the perfect library that would meet my expectations in terms of UI for the position of the bounty hunters. I wanted the crew to be able to play around with this, to simply copy a file into the editor and to have validation perform. In the end, the only downside of this approach seems that the form has to be at all time a valid JSON object.
+
+Apart from that, it was a fun project to work on, no particular difficulty.
+
+I am bit sceptical about the need of a CLI though. That may because of my technical approach, and the way I started by doing all the frontend part first, but I felt that the CLI part was redundant.
+
+I have not tested the components, mainly because of lack of time, but also because most of the business logic is in the utils function, and those should be tested enough under time constraint.
+
+Thank you for reviewing my project. Hope you have fun.

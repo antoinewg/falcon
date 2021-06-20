@@ -43,30 +43,39 @@ const routes = [
 describe('computeOdds()', () => {
   it('example 1', () => {
     const computedOdds = computeOdds(falcon1, empire1, routes)
-    expect(computedOdds).toEqual(answer1.odds)
+    expect(computedOdds).toBe(answer1.odds)
   })
 
   it('example 2', () => {
     const computedOdds = computeOdds(falcon2, empire2, routes)
-    expect(computedOdds).toEqual(answer2.odds)
+    expect(computedOdds).toBe(answer2.odds)
   })
 
   it('example 3', () => {
     const computedOdds = computeOdds(falcon3, empire3, routes)
-    expect(computedOdds).toEqual(answer3.odds)
+    expect(computedOdds).toBe(answer3.odds)
   })
 
   it('example 4', () => {
     const computedOdds = computeOdds(falcon4, empire4, routes)
-    expect(computedOdds).toEqual(answer4.odds)
+    expect(computedOdds).toBe(answer4.odds)
   })
 
-  fit('simple example with no bounty hunter', () => {
+  it('simple example with no bounty hunter', () => {
     const computedOdds = computeOdds(
       { autonomy: 6, departure: 'Tatooine', arrival: 'Endor', routes_db: 'universe.db' },
       { countdown: 10, bounty_hunters: [] },
       routes,
     )
-    expect(computedOdds).toEqual(0)
+    expect(computedOdds).toBe(1)
+  })
+
+  it('simple example with no bounty hunter but no time', () => {
+    const computedOdds = computeOdds(
+      { autonomy: 6, departure: 'Tatooine', arrival: 'Endor', routes_db: 'universe.db' },
+      { countdown: 7, bounty_hunters: [] },
+      routes,
+    )
+    expect(computedOdds).toBe(0)
   })
 })

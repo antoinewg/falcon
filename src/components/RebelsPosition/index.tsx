@@ -5,7 +5,9 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import React, { useState } from 'react'
 import { useEffect, useMemo } from 'react'
+import { useQueryClient } from 'react-query'
 
+import { QueryKeys } from '../../constants'
 import { usePlanets } from '../PlanetarySystem/api'
 
 import { useRebelsPosition } from './api'
@@ -19,17 +21,20 @@ export const RebelsPosition = () => {
   const { data } = useRebelsPosition()
   const planets = usePlanets()
   const [rebels, setRebels] = useState<IRebelsPosition | undefined>(undefined)
+  const queryClient = useQueryClient()
 
   useEffect(() => {
     if (data) {
       setRebels(data)
     }
-  }, [data])
+  }, [!data])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setRebels(JSON.parse(event.target.value))
 
   const error = useMemo(() => getErrorMessage(rebels, planets), [rebels, planets])
+
+  const handleApply = () => queryClient.setQueryData(QueryKeys.REBELS_POSITION, rebels)
 
   return (
     <React.Fragment>
@@ -47,7 +52,7 @@ export const RebelsPosition = () => {
       </FormControl>
       <CardActions disableSpacing>
         <Upload onUpload={setRebels} />
-        <Apply disabled={!!error} />
+        <Apply disabled={!!error} onClick={handleApply} />
       </CardActions>
     </React.Fragment>
   )

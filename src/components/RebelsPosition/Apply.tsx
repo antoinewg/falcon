@@ -3,14 +3,15 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 
 interface Props {
   disabled: boolean
+  onClick: () => void
 }
 
-export const Apply: React.FC<Props> = ({ disabled }) => {
+export const Apply: React.FC<Props> = ({ disabled, onClick }) => {
   const classes = useStyles()
 
   return (
     <div className={classes.apply}>
-      <Button color="primary" disabled={disabled}>
+      <Button color="primary" disabled={disabled} onClick={onClick}>
         Apply
       </Button>
     </div>

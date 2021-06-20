@@ -3,7 +3,8 @@ import React from 'react'
 
 import { useSurvivalOdds, useComputedOdds } from './api'
 
-const formatOdds = (num?: number): string => (typeof num === 'undefined' ? 'Unknown' : `${num}%`)
+const formatOdds = (num?: number): string =>
+  typeof num === 'undefined' ? 'Unknown' : `${100 * num}%`
 
 export const SurvivalChances = () => {
   const { data: answer } = useSurvivalOdds()

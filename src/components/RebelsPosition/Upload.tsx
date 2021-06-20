@@ -5,15 +5,17 @@ import React, { useState } from 'react'
 
 import { IRebelsPosition } from './types'
 
+interface Message {
+  status: AlertProps['severity']
+  message: string
+}
+
 interface Props {
   onUpload: (content: IRebelsPosition) => void
 }
 
 export const Upload: React.FC<Props> = ({ onUpload }) => {
-  const [uploadMessage, setUploadMessage] = useState<{
-    status: AlertProps['severity']
-    message: string
-  } | null>(null)
+  const [uploadMessage, setUploadMessage] = useState<Message | null>(null)
   let fileReader = new FileReader()
 
   const handleClose = () => setUploadMessage(null)

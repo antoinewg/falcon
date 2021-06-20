@@ -8,11 +8,11 @@ import { ConfigurationWrapper } from './configuration/Wrapper'
 const queryClient = new QueryClient()
 
 export const App = () => (
-  <ConfigurationWrapper>
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <ConfigurationWrapper>
       <Drawer />
       <CssBaseline />
       <Dashboard />
-    </QueryClientProvider>
-  </ConfigurationWrapper>
+    </ConfigurationWrapper>
+  </QueryClientProvider>
 )

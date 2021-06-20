@@ -1,6 +1,6 @@
 import GraphNetwork from 'react-graph-network'
 
-import { useRebelsPosition } from '../RebelsPosition/api'
+import { useConfiguration } from '../../configuration/Wrapper'
 
 import { useFalcon, useRoutes } from './api'
 import { NodeComponent } from './Node'
@@ -9,7 +9,9 @@ import { getNetworkData } from './utils'
 export const PlanetarySystem = () => {
   const { data } = useRoutes()
   const { data: falcon } = useFalcon()
-  const { data: rebels } = useRebelsPosition()
+  const { configuration } = useConfiguration()
+
+  const { rebels } = configuration
 
   const rebelsPlanets = Array.from(new Set(rebels?.bounty_hunters.map(({ planet }) => planet)))
 

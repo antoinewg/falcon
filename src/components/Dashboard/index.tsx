@@ -7,12 +7,13 @@ import { RebelsPosition } from '../RebelsPosition'
 import { SurvivalChances } from '../SurvivalChances'
 
 import { DashboardCard } from './DashboardCard'
+import background from './galaxy.jpg'
 
 export const Dashboard = () => {
   const classes = useStyles()
 
   return (
-    <main>
+    <main style={{ backgroundImage: `url(${background})` }}>
       <Container className={classes.cardGrid} maxWidth="xl">
         <Grid container spacing={4}>
           <DashboardCard title="Rebels' position">

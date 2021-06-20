@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getNetworkData() should retrieve the network data from routes, with no rebels but with start/finish 1`] = `
+exports[`getNetworkData() should retrieve the network data from routes, with no hunters but with start/finish 1`] = `
 "Snapshot Diff:
 - First value
 + Second value
@@ -28,7 +28,7 @@ exports[`getNetworkData() should retrieve the network data from routes, with no 
     Object {"
 `;
 
-exports[`getNetworkData() should retrieve the network data from routes, with no start/finish but with rebels 1`] = `
+exports[`getNetworkData() should retrieve the network data from routes, with no start/finish but with hunters 1`] = `
 "Snapshot Diff:
 - First value
 + Second value

@@ -2,7 +2,7 @@ import { Route, Link, Network, Colors } from './types'
 
 export const getNetworkData = (
   routes: Route[],
-  rebels?: string[],
+  hunters?: string[],
   start?: string,
   finish?: string,
 ): Network => {
@@ -21,7 +21,7 @@ export const getNetworkData = (
       color: mapColor(id, start, finish),
       start: id === start,
       finish: id === finish,
-      hunter: (rebels || []).includes(id),
+      hunter: (hunters || []).includes(id),
     })),
     links,
   }

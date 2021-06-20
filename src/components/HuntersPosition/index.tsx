@@ -9,34 +9,34 @@ import { useEffect, useMemo, useState } from 'react'
 import { useConfiguration } from '../../configuration/Wrapper'
 import { usePlanets } from '../PlanetarySystem/api'
 
-import { useRebelsPosition } from './api'
+import { useHuntersPosition } from './api'
 import { Apply } from './Apply'
-import { IRebelsPosition } from './types'
+import { IHuntersPosition } from './types'
 import { Upload } from './Upload'
 import { getErrorMessage } from './utils'
 
-export const RebelsPosition = () => {
+export const HuntersPosition = () => {
   const classes = useStyles()
-  const { data } = useRebelsPosition()
+  const { data } = useHuntersPosition()
   const planets = usePlanets()
   const { configuration, dispatch } = useConfiguration()
-  const { rebels } = configuration
+  const { hunters } = configuration
 
-  const [tempRebels, setTempRebels] = useState<IRebelsPosition | undefined>(rebels)
+  const [tempHunters, setTempHunters] = useState<IHuntersPosition | undefined>(hunters)
 
   useEffect(() => {
     if (data) {
-      setTempRebels(data)
-      dispatch({ type: 'SET_REBELS', payload: data })
+      setTempHunters(data)
+      dispatch({ type: 'SET_HUNTERS', payload: data })
     }
   }, [!data])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setTempRebels(JSON.parse(event.target.value))
+    setTempHunters(JSON.parse(event.target.value))
 
-  const error = useMemo(() => getErrorMessage(tempRebels, planets), [tempRebels, planets])
+  const error = useMemo(() => getErrorMessage(tempHunters, planets), [tempHunters, planets])
 
-  const handleApply = () => tempRebels && dispatch({ type: 'SET_REBELS', payload: tempRebels })
+  const handleApply = () => tempHunters && dispatch({ type: 'SET_HUNTERS', payload: tempHunters })
 
   return (
     <React.Fragment>
@@ -46,14 +46,14 @@ export const RebelsPosition = () => {
           label=""
           variant="outlined"
           multiline
-          value={JSON.stringify(tempRebels, null, 4)}
+          value={JSON.stringify(tempHunters, null, 4)}
           fullWidth={true}
           onChange={handleChange}
         />
         {error ? <FormHelperText>{error}</FormHelperText> : null}
       </FormControl>
       <CardActions disableSpacing>
-        <Upload onUpload={setTempRebels} />
+        <Upload onUpload={setTempHunters} />
         <Apply disabled={!!error} onClick={handleApply} />
       </CardActions>
     </React.Fragment>

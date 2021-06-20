@@ -3,7 +3,7 @@ interface BountyHunter {
   day: number
 }
 
-export interface IRebelsPosition {
+export interface IHuntersPosition {
   countdown: number
   bounty_hunters: BountyHunter[]
 }

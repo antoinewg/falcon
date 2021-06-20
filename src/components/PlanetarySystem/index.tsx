@@ -11,15 +11,15 @@ export const PlanetarySystem = () => {
   const { data: falcon } = useFalcon()
   const { configuration } = useConfiguration()
 
-  const { rebels } = configuration
+  const { hunters } = configuration
 
-  const rebelsPlanets = Array.from(new Set(rebels?.bounty_hunters.map(({ planet }) => planet)))
+  const huntersPlanets = Array.from(new Set(hunters?.bounty_hunters.map(({ planet }) => planet)))
 
   if (!data) return null
 
   const networkData = getNetworkData(
     data?.routes,
-    rebelsPlanets,
+    huntersPlanets,
     falcon?.departure,
     falcon?.arrival,
   )

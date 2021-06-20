@@ -47,31 +47,31 @@ const baseNetwork = {
 }
 
 describe('getNetworkData()', () => {
-  it('should retrieve the network data from routes, with no rebels and no start/finish', () => {
+  it('should retrieve the network data from routes, with no hunters and no start/finish', () => {
     const network = getNetworkData(routes, [], undefined, undefined)
     expect(network.links).toStrictEqual(baseNetwork.links)
     expect(network.nodes).toStrictEqual(baseNetwork.nodes)
   })
 
-  it('should retrieve the network data from routes, with no rebels but with start/finish', () => {
+  it('should retrieve the network data from routes, with no hunters but with start/finish', () => {
     const network = getNetworkData(routes, [], 'Tatooine', 'Dagobah')
     expect(network.links).toStrictEqual(baseNetwork.links)
     expect(snapshotDiff(network.nodes, baseNetwork.nodes)).toMatchSnapshot()
   })
 
-  it('should retrieve the network data from routes, with no rebels but with invalid start/finish', () => {
+  it('should retrieve the network data from routes, with no hunters but with invalid start/finish', () => {
     const network = getNetworkData(routes, [], 'Totooine', 'Dagobert')
     expect(network.links).toStrictEqual(baseNetwork.links)
     expect(network.nodes).toStrictEqual(baseNetwork.nodes)
   })
 
-  it('should retrieve the network data from routes, with no start/finish but with rebels', () => {
+  it('should retrieve the network data from routes, with no start/finish but with hunters', () => {
     const network = getNetworkData(routes, ['Hoth'], undefined, undefined)
     expect(network.links).toStrictEqual(baseNetwork.links)
     expect(snapshotDiff(network.nodes, baseNetwork.nodes)).toMatchSnapshot()
   })
 
-  it('should retrieve the network data from routes, with start/finish and rebels', () => {
+  it('should retrieve the network data from routes, with start/finish and hunters', () => {
     const network = getNetworkData(routes, ['Hoth'], 'Tatooine', 'Dagobah')
     expect(network.links).toStrictEqual(baseNetwork.links)
     expect(network.nodes).toStrictEqual([

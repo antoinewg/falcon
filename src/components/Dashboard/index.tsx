@@ -3,9 +3,9 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
+import { HuntersPosition } from '../HuntersPosition'
 import { PlanetarySystem } from '../PlanetarySystem'
 import { useFalcon } from '../PlanetarySystem/api'
-import { RebelsPosition } from '../RebelsPosition'
 import { SurvivalChances } from '../SurvivalChances'
 
 import { DashboardCard } from './DashboardCard'
@@ -42,8 +42,8 @@ export const Dashboard = () => {
 
         <Grid container spacing={8}>
           <Grid item xs={12} sm={6}>
-            <DashboardCard title="Rebels' position">
-              <RebelsPosition />
+            <DashboardCard title="Hunters' position">
+              <HuntersPosition />
             </DashboardCard>
           </Grid>
 

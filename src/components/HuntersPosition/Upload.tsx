@@ -3,7 +3,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
 import React, { useState } from 'react'
 
-import { IRebelsPosition } from './types'
+import { IHuntersPosition } from './types'
 
 interface Message {
   status: AlertProps['severity']
@@ -11,7 +11,7 @@ interface Message {
 }
 
 interface Props {
-  onUpload: (content: IRebelsPosition) => void
+  onUpload: (content: IHuntersPosition) => void
 }
 
 export const Upload: React.FC<Props> = ({ onUpload }) => {

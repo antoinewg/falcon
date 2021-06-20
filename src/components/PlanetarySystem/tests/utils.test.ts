@@ -1,3 +1,5 @@
+import snapshotDiff from 'snapshot-diff'
+
 import { getNetworkData } from '../utils'
 
 const routes = [
@@ -28,12 +30,12 @@ const routes = [
   },
 ]
 
-const networkData = {
+const baseNetwork = {
   nodes: [
-    { id: 'Tatooine', color: 'lightskyblue' },
-    { id: 'Dagobah', color: 'lightskyblue' },
-    { id: 'Endor', color: 'lightskyblue' },
-    { id: 'Hoth', color: 'lightskyblue' },
+    { id: 'Tatooine', color: 'lightskyblue', finish: false, start: false, hunter: false },
+    { id: 'Dagobah', color: 'lightskyblue', finish: false, start: false, hunter: false },
+    { id: 'Endor', color: 'lightskyblue', finish: false, start: false, hunter: false },
+    { id: 'Hoth', color: 'lightskyblue', finish: false, start: false, hunter: false },
   ],
   links: [
     { source: 'Tatooine', target: 'Dagobah', distance: 6 },
@@ -45,7 +47,38 @@ const networkData = {
 }
 
 describe('getNetworkData()', () => {
-  it('should retrieve the network data from routes', () => {
-    expect(getNetworkData(routes)).toStrictEqual(networkData)
+  it('should retrieve the network data from routes, with no rebels and no start/finish', () => {
+    const network = getNetworkData(routes, [], undefined, undefined)
+    expect(network.links).toStrictEqual(baseNetwork.links)
+    expect(network.nodes).toStrictEqual(baseNetwork.nodes)
+  })
+
+  it('should retrieve the network data from routes, with no rebels but with start/finish', () => {
+    const network = getNetworkData(routes, [], 'Tatooine', 'Dagobah')
+    expect(network.links).toStrictEqual(baseNetwork.links)
+    expect(snapshotDiff(network.nodes, baseNetwork.nodes)).toMatchSnapshot()
+  })
+
+  it('should retrieve the network data from routes, with no rebels but with invalid start/finish', () => {
+    const network = getNetworkData(routes, [], 'Totooine', 'Dagobert')
+    expect(network.links).toStrictEqual(baseNetwork.links)
+    expect(network.nodes).toStrictEqual(baseNetwork.nodes)
+  })
+
+  it('should retrieve the network data from routes, with no start/finish but with rebels', () => {
+    const network = getNetworkData(routes, ['Hoth'], undefined, undefined)
+    expect(network.links).toStrictEqual(baseNetwork.links)
+    expect(snapshotDiff(network.nodes, baseNetwork.nodes)).toMatchSnapshot()
+  })
+
+  it('should retrieve the network data from routes, with start/finish and rebels', () => {
+    const network = getNetworkData(routes, ['Hoth'], 'Tatooine', 'Dagobah')
+    expect(network.links).toStrictEqual(baseNetwork.links)
+    expect(network.nodes).toStrictEqual([
+      { id: 'Tatooine', color: 'lightsalmon', finish: false, start: true, hunter: false },
+      { id: 'Dagobah', color: 'lightgreen', finish: true, start: false, hunter: false },
+      { id: 'Endor', color: 'lightskyblue', finish: false, start: false, hunter: false },
+      { id: 'Hoth', color: 'lightskyblue', finish: false, start: false, hunter: true },
+    ])
   })
 })

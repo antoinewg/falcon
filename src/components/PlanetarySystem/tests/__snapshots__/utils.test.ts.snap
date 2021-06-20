@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getNetworkData() should retrieve the network data from routes, with no rebels but with start/finish 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -1,16 +1,16 @@
+  Array [
+    Object {
+-     \\"color\\": \\"lightsalmon\\",
++     \\"color\\": \\"lightskyblue\\",
+      \\"finish\\": false,
+      \\"hunter\\": false,
+      \\"id\\": \\"Tatooine\\",
+-     \\"start\\": true,
++     \\"start\\": false,
+    },
+    Object {
+-     \\"color\\": \\"lightgreen\\",
+-     \\"finish\\": true,
++     \\"color\\": \\"lightskyblue\\",
++     \\"finish\\": false,
+      \\"hunter\\": false,
+      \\"id\\": \\"Dagobah\\",
+      \\"start\\": false,
+    },
+    Object {"
+`;
+
+exports[`getNetworkData() should retrieve the network data from routes, with no start/finish but with rebels 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -21,10 +21,10 @@
+      \\"start\\": false,
+    },
+    Object {
+      \\"color\\": \\"lightskyblue\\",
+      \\"finish\\": false,
+-     \\"hunter\\": true,
++     \\"hunter\\": false,
+      \\"id\\": \\"Hoth\\",
+      \\"start\\": false,
+    },
+  ]"
+`;

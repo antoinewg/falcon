@@ -13,6 +13,9 @@ export interface Route {
 export interface Node {
   id: string
   color: Colors
+  start: boolean
+  finish: boolean
+  hunter: boolean
 }
 
 export interface Link {

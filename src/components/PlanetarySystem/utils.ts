@@ -1,6 +1,11 @@
 import { Route, Link, Network, Colors } from './types'
 
-export const getNetworkData = (routes: Route[], start?: string, finish?: string): Network => {
+export const getNetworkData = (
+  routes: Route[],
+  rebels?: string[],
+  start?: string,
+  finish?: string,
+): Network => {
   const planets = new Set<string>()
   const links: Link[] = []
 
@@ -11,7 +16,13 @@ export const getNetworkData = (routes: Route[], start?: string, finish?: string)
   })
 
   return {
-    nodes: Array.from(planets).map((id) => ({ id, color: mapColor(id, start, finish) })),
+    nodes: Array.from(planets).map((id) => ({
+      id,
+      color: mapColor(id, start, finish),
+      start: id === start,
+      finish: id === finish,
+      hunter: (rebels || []).includes(id),
+    })),
     links,
   }
 }

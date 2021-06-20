@@ -16,7 +16,7 @@ export const Dashboard = () => {
   const { data: falcon } = useFalcon()
 
   return (
-    <main style={{ backgroundImage: `url(${background})`, height: '100%' }}>
+    <main style={{ backgroundImage: `url(${background})`, height: '100vh' }}>
       <Container className={classes.cardGrid} maxWidth="xl">
         <Grid container spacing={8}>
           <Grid item xs={12} sm={4}>

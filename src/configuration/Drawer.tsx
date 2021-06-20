@@ -16,10 +16,26 @@ import MenuIcon from '@material-ui/icons/Menu'
 import clsx from 'clsx'
 import React, { useState } from 'react'
 
+import { useConfiguration } from './Wrapper'
+
 export const Drawer = () => {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = useState(false)
+  const { dispatch } = useConfiguration()
+
+  const handleDrawerOpen = () => {
+    setOpen(true)
+  }
+
+  const handleDrawerClose = () => {
+    setOpen(false)
+  }
+
+  const handleClickExample = (example: number) => () => {
+    dispatch({ type: 'SET_EXAMPLE', payload: example })
+    handleDrawerClose()
+  }
 
   return (
     <React.Fragment>
@@ -32,7 +48,7 @@ export const Drawer = () => {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={() => setOpen(true)}
+            onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}>
             <MenuIcon />
@@ -52,14 +68,14 @@ export const Drawer = () => {
         }}>
         <div className={classes.drawerContainer}>
           <div className={classes.drawerHeader}>
-            <IconButton onClick={() => setOpen(false)}>
+            <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
           <Divider />
           <List>
-            {'1234'.split('').map((example) => (
-              <ListItem button key={`example${example}`}>
+            {'1234'.split('').map((example, index) => (
+              <ListItem button key={`example${example}`} onClick={handleClickExample(index + 1)}>
                 <ListItemIcon>
                   <DashboardIcon />
                 </ListItemIcon>

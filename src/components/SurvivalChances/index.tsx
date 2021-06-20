@@ -8,11 +8,11 @@ const formatOdds = (num?: number): string =>
 
 export const SurvivalChances = () => {
   const { data: answer } = useSurvivalOdds()
-  const { data: computed } = useComputedOdds()
+  const computed = useComputedOdds()
 
   return (
     <React.Fragment>
-      <Typography variant="h2">{formatOdds(computed?.odds)}</Typography>
+      <Typography variant="h2">{formatOdds(computed)}</Typography>
       <Typography variant="h6" align="right">
         (Answer {formatOdds(answer?.odds)})
       </Typography>

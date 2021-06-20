@@ -16,7 +16,7 @@ export const Dashboard = () => {
   const { data: falcon } = useFalcon()
 
   return (
-    <main style={{ backgroundImage: `url(${background})`, height: '100vh' }}>
+    <main style={{ backgroundImage: `url(${background})`, height: '100%' }}>
       <Container className={classes.cardGrid} maxWidth="xl">
         <Grid container spacing={8}>
           <Grid item xs={12} sm={4}>
@@ -60,6 +60,7 @@ export const Dashboard = () => {
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
+    marginTop: theme.spacing(4),
     padding: theme.spacing(8),
   },
 }))
